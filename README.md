@@ -2,6 +2,8 @@
 
 **Önemli!** kodu okumadan önce burayı tamamen okuyunuz.
 
+Asıl önemli olan kod **src/main/java/frc/robot** dosyası ve alt dosyalarındadır. Diğer yerleri okumadan geçebilirsiniz.
+
 VSCode ile kodu okurken `Ctrl` tuşuna basılı tutup bir *değişken*, *sabit*, *sınıf* veya *metodun* üzerine tıklarsanız o *değişken*, *sabit*, *sınıf* veya *metodun* tanımlandığı yere gidersiniz.
 
 Kodu github ile okuyorsanız direk bakmak istediğiniz şeyin üstüne tıklamanız yeterli. Sağda nerede tanımlandıkları çıkacaktır.
