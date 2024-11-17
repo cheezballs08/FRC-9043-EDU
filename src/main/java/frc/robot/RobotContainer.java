@@ -60,11 +60,14 @@ public class RobotContainer {
     this.drivetrainSubsystem = new DrivetrainSubsystem();
     this.shooterSubsystem = new ShooterSubsystem();
 
-    this.teleopDriveCommand = new TeleopDriveCommand(drivetrainSubsystem, controller::getLeftY, controller::getRightX);
-    this.teleopShootCommand = new TeleopShootCommand(shooterSubsystem);
+    // TeleopDriveCommand'ın girdilerini Supplier<Double> olarak tanımladığımız için double returnleyen iki çift metod girdilememiz lazım.
+    // Normalde girdi double olsaydı controller.getLeftY() diye girdileyebilirdik ancak şuan bizim metod girdilememiz lazım.
+    // Bunu :: ile yapıyoruz. :: metodun çıktısı yerine metodun kendisinin kullanılması gerektiğini belirtiyor.
+    this.teleopDriveCommand = new TeleopDriveCommand(this.drivetrainSubsystem, this.controller::getLeftY, this.controller::getRightX);
+    this.teleopShootCommand = new TeleopShootCommand(this.shooterSubsystem);
 
-    this.autoShootCommand = new TimedShootCommand(shooterSubsystem, ShooterConstants.autoShootDuration);
-    this.autoMoveForwardCommand = new TimedMoveForwardCommand(drivetrainSubsystem, DrivetrainConstants.autoMoveDuration);
+    this.autoShootCommand = new TimedShootCommand(this.shooterSubsystem, ShooterConstants.autoShootDuration);
+    this.autoMoveForwardCommand = new TimedMoveForwardCommand(this.drivetrainSubsystem, DrivetrainConstants.autoMoveDuration);
     
     this.configureBindings();
   }
@@ -74,17 +77,17 @@ public class RobotContainer {
 
     // xTrigger aktif olduğu sürece teleopShootCommand çalışacak.
     // Aktiflik bitince teleopShootCommand da bitecek.
-    this.xTrigger.whileTrue(teleopShootCommand);
+    this.xTrigger.whileTrue(this.teleopShootCommand);
 
     // Bu komutlar triggerlar aktif olunca çağırılacaklar.
     // Biri aktifken bir diğeri aktif hale getirilirse aktif olan kapanır ve yenisi çalışmaya başlar.
-    this.aTrigger.onTrue(shootCommand1);
-    this.bTrigger.onTrue(shootCommand2);
-    this.yTrigger.onTrue(shootCommand3);
+    this.aTrigger.onTrue(this.shootCommand1);
+    this.bTrigger.onTrue(this.shootCommand2);
+    this.yTrigger.onTrue(this.shootCommand3);
 
     // Burada drivetrainSubsystemi gerektiren bir komut çalışmayınca çalışacak komutu belirliyoruz
     // Aynısınım shooterSubsystem için aynısının yapılması gerekmiyor. Bazı subsystemlerin defaultCommandleri olmayabilir.
-    this.drivetrainSubsystem.setDefaultCommand(teleopDriveCommand);
+    this.drivetrainSubsystem.setDefaultCommand(this.teleopDriveCommand);
   }
 
   // Otonomda çalışacak komutları buradan returnliyoruz.
@@ -94,8 +97,8 @@ public class RobotContainer {
     // Bir komut bittiğinde diğer komut çalışıyor.
     // Bu girdileri yan yana da yazabilirdik ancak böyle daha kolay okunuyor ve komutların sırasını değiştirmek daha kolay.
     return Commands.sequence(
-      autoShootCommand,
-      autoMoveForwardCommand
+      this.autoShootCommand,
+      this.autoMoveForwardCommand
     );
   }
 }
