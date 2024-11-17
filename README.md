@@ -2,7 +2,9 @@
 
 **Önemli!** kodu okumadan önce burayı tamamen okuyunuz.
 
-Kodu okurken `Ctrl` tuşuna basılı tutup bir *değişken*, *sabit*, *sınıf* veya *metodun* üzerine tıklarsanız o *değişken*, *sabit*, *sınıf* veya *metodun* tanımlandığı yere gidersiniz. Bunu kullanmanızı şiddetle tavsiye ederim.
+VSCode ile kodu okurken `Ctrl` tuşuna basılı tutup bir *değişken*, *sabit*, *sınıf* veya *metodun* üzerine tıklarsanız o *değişken*, *sabit*, *sınıf* veya *metodun* tanımlandığı yere gidersiniz.
+
+Kodu github ile okuyorsanız direk bakmak istediğiniz şeyin üstüne tıklamanız yeterli. Sağda nerede tanımlandıkları çıkacaktır.
 
 ## Command Scheduler (Komut Zamanlayıcsı)
   Bizim için `Subsystem`'lerin ve `Command`'lerin gerekli periodik metodlarını çağırır ve aynı `Subsystem`'i kullanan `Command`'lerin birbiri ile çakışmamasını sağlar.
