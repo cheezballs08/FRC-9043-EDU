@@ -42,6 +42,7 @@ public class RobotContainer {
 
   // Bir de kolaylık açısından 2 saniye, 5 saniye ve 8 saniye atış yapan 3 komut tanımlayalım ve bunları
   // triggerlara atayalım.
+  // Bunların aşağıda olması lazım ama telefondayım düzeltmeye üşendim :D
   TimedShootCommand shootCommand1 = new TimedShootCommand(shooterSubsystem, 2);
   TimedShootCommand shootCommand2 = new TimedShootCommand(shooterSubsystem, 5);
   TimedShootCommand shootCommand3 = new TimedShootCommand(shooterSubsystem, 8);
